@@ -6,13 +6,13 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
-  // Get the repository name from environment or use a default value
-  // This will be in the format username/repo-name or just repo-name
-  const repo = process.env.GITHUB_REPOSITORY ? 
-    process.env.GITHUB_REPOSITORY.split('/')[1] : '';
+  // Get the repository name from environment or extract from GITHUB_REPOSITORY
+  const repoName = process.env.GITHUB_REPOSITORY 
+    ? process.env.GITHUB_REPOSITORY.split('/')[1] 
+    : 'cloud-data-portfolio-hub';
 
   return {
-    base: mode === 'production' ? `/${repo}/` : '/',
+    base: mode === 'production' ? `/${repoName}/` : '/',
     server: {
       host: "::",
       port: 8080,
